@@ -1,8 +1,8 @@
 import {Header, TripCard} from "../../../components";
 import {type LoaderFunctionArgs, useSearchParams} from "react-router";
 import {getAllTrips, getTripById} from "../../appwrite/trips";
-import {parseTripData} from "~/lib/utils";
-import type {Route} from "./+types/all-users"
+import {parseTripData} from "../../lib/utils";
+import type {Route} from "./+types/trips";
 import {useState} from "react";
 import {PagerComponent} from "@syncfusion/ej2-react-grids";
 

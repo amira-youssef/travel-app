@@ -1,26 +1,25 @@
-import { Outlet, redirect } from "react-router";
-import pkg from "@syncfusion/ej2-react-navigations";
-const { SidebarComponent } = pkg;
-import { MobileSidebar, NavItems } from "../../../components";
-import { account } from "../../appwrite/client";
-import { getExistingUser, storeUserData } from "../../appwrite/auth";
+import {Outlet, redirect} from "react-router";
+import {SidebarComponent} from "@syncfusion/ej2-react-navigations";
+import {MobileSidebar, NavItems} from "../../../components";
+import {account} from "../../appwrite/client";
+import {getExistingUser, storeUserData} from "../../appwrite/auth";
 
 export async function clientLoader() {
     try {
         const user = await account.get();
 
-        if (!user.$id) return redirect("/sign-in");
+        if(!user.$id) return redirect('/sign-in');
 
         const existingUser = await getExistingUser(user.$id);
 
-        if (existingUser?.status === "user") {
-            return redirect("/");
+        if(existingUser?.status === 'user') {
+            return redirect('/');
         }
 
         return existingUser?.$id ? existingUser : await storeUserData();
     } catch (e) {
-        console.log("Error in clientLoader", e);
-        return redirect("/sign-in");
+        console.log('Error in clientLoader', e)
+        return redirect('/sign-in')
     }
 }
 
@@ -39,7 +38,6 @@ const AdminLayout = () => {
                 <Outlet />
             </aside>
         </div>
-    );
-};
-
-export default AdminLayout;
+    )
+}
+export default AdminLayout
